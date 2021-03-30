@@ -7,6 +7,7 @@
 %>
 		<div id="header">
 			<h1>MySite</h1>
+			<h3>JSP</h3>
 			<ul>
 		<%
 			if(authUser==null) {
@@ -22,24 +23,32 @@
 				<li> ${authUser.name }님 안녕하세요^^;</li>
 		<%  } %>
 			</ul>
-		</div> <!-- /header -->
-
-		<br>
-		<br>
-		<br><br>
-		
-
-		<div id="header">
-			<h1>MySite</h1>
+	
+			<h1>JSTL</h1>
+			
 			<ul>
-		
-		
-
-
-
-
-
+		<c:chooose>
+			<c:when test="${empty authUser }">
+				<!-- 로그인 전 -->
+				<li><a href="/mysite/user?a=loginform">로그인</a></li>
+				<li><a href="/mysite/user?a=joinform">회원가입</a></li>
+		</c:when>
+		<c:otherwise>	
+				<!-- 로그인 후 -->
+				<li><a href="/mysite/user?a=modifyform">회원정보수정</a></li>
+				<li><a href="/mysite/user?a=logout">로그아웃</a></li> 
+				<li> ${sessionScope.authUser.name }님 안녕하세요^^;</li>
+				<li> ${authUser.name }님 안녕하세요^^;</li>
+		</c:otherwise>
+		</c:chooose>
 			</ul>
+		
+
+
+
+
+
+			
 		</div> <!-- /header -->
 		
 	
